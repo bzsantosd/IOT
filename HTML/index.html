@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Controle de LEDs com Arduino via Web </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    /* Estilo Base */
+    body {
+        font-family: sans-serif;
+        text-align: center; 
+        background-color: #f7f7f7;
+        padding: 10px;
+    }
+
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 1.8em;
+    }
+
+
+.container {
+        display: flex;
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        margin: 0 auto; 
+        max-width: 900px; 
+        padding: 0;
+    }
+
+
+.led-group {
+        width: 300px; 
+        flex-shrink: 0; 
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        margin: 15px; 
+    }
+
+.led-group h2 {
+        margin: 0 0 15px 0;
+        color: #34495e;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        font-size: 1.1em;
+    }
+    
+.button-wrapper {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    /* Estilo dos Botões Aprimorado */
+.button {
+        padding: 10px 10px; 
+        font-size: 16px; 
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        flex-grow: 1; 
+        text-transform: uppercase;
+        box-shadow: 0 2px 0 #999;
+        transition: background-color 0.2s;
+    }
+
+.button:active {
+        transform: translateY(1px); 
+        box-shadow: 0 1px 0 #666;
+    }
+
+    /* Cores dos Botões */
+.on {
+        background-color: #2ecc71; 
+    }
+
+.off {
+        background-color: #e74c3c; 
+    }
+</style>
+</head>
+<body>
+
+    <h1>Controle de LEDs com Arduino via Web</h1>
+
+   <div class="container">
+    <div class="led-group">
+        <h2>LED 1 (Verde)</h2>
+        <div class="button-wrapper">
+            <a class="button on" href="/LED1/ON">Ligar</a>
+            <a class="button off" href="/LED1/OFF">Desligar</a>
+        </div>
+    </div>
+    
+    <div class="led-group">
+        <h2>LED 2 (Vermelho)</h2>
+        <div class="button-wrapper">
+            <a class="button on" href="/LED2/ON">Ligar</a>
+            <a class="button off" href="/LED2/OFF">Desligar</a>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+
+</body>
+</html>
