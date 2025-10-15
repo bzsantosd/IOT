@@ -86,9 +86,8 @@
 <body>
 
     <h1>Controle de LEDs com Arduino via Web</h1>
-
-   <div class="container">
-    <div class="led-group">
+    
+     <!-- <div class="led-group">
         <h2>LED 1 (Verde)</h2>
         <div class="button-wrapper">
             <a class="button on" href="/LED1/ON">Ligar</a>
@@ -101,7 +100,30 @@
         <div class="button-wrapper">
             <a class="button on" href="/LED2/ON">Ligar</a>
             <a class="button off" href="/LED2/OFF">Desligar</a>
-        </div>
+        </div> -->
+
+   <div class="container">
+    <h2> LED 1 (Verde)</h2>
+    <button class="on" onclick="controlLed('1', 'on')">Ligar</button>
+    <button class="off" onclick="controlLed('1', 'off')">Desligar</button>
+    </div>
+
+    <h2> LED 2 (Vermelho)</h2>
+    <button class="on" onclick="controlLed('2', 'on')">Ligar</button>
+    <button class="off" onclick="controlLed('2', 'off')">Desligar</button>
+    </div>
+
+<script>
+    function controlLed(ledNum, action) {
+        fetch('/control/${ledNum}/${action}')
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    }
     </div>
 </div>
         
