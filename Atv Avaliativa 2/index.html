@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climatização Residencial - Arduino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .temp-display {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .temp-item {
+            text-align: center;
+        }
+        .temp-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        .quente { color: #e74c3c; } /* Vermelho */
+        .fria { color: #3498db; } /* Azul */
+        .ideal { color: #2ecc71; } /* Verde */
+
+        .controle-alerta {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .alerta-btn {
+            background-color: #f39c12; /* Cor de alerta */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .alerta-btn:hover {
+            background-color: #e67e22;
+        }
+        .led-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
+            background-color: #bdc3c7; /* Cinza (Desligado) */
+        }
+        .led-amarelo {
+            background-color: #f1c40f; /* Amarelo (Ligado) */
+            box-shadow: 0 0 10px #f1c40f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Controle de Climatização</h1>
+
+        <div class="temp-display">
+            <div class="temp-item">
+                <div class="temp-value quente" id="temp-quente">28°C</div>
+                <div class="label">Limite Quente</div>
+            </div>
+            <div class="temp-item">
+                <div class="temp-value ideal" id="temp-atual">23°C</div>
+                <div class="label">Atual</div>
+            </div>
+            <div class="temp-item">
+                <div class="temp-value fria" id="temp-fria">18°C</div>
+                <div class="label">Limite Fria</div>
+            </div>
+        </div>
+        
+        <div class="controle-alerta">
+            <button class="alerta-btn" onclick="enviarAlerta()">
+                Reiniciar Climatização
+            </button>
+            
+            <span class="led-status" id="led-alerta" title="LED Amarelo de Alerta/Reinício"></span>
+            
+            <p class="label" style="margin-top: 10px;">(O LED acende quando o sistema é reiniciado)</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Esta função é chamada ao clicar no botão. 
+        // Em um projeto Arduino/ESP, ela enviaria uma requisição HTTP para o microcontrolador.
+        function enviarAlerta() {
+            var led = document.getElementById('led-alerta');
+            
+            // 1. Simulação do LED Amarelo ligando:
+            led.classList.add('led-amarelo');
+            
+            // 2. Aqui você teria o código JavaScript para enviar o comando de reinício para o Arduino (ex: via AJAX/fetch).
+            // Exemplo conceitual (precisa ser implementado no ESP):
+            // fetch('/reiniciar', { method: 'POST' })
+            //     .then(response => {
+            //         console.log('Comando de reinício enviado!');
+            //     });
+
+            // 3. Simulação do LED Amarelo desligando após o "reinício" (opcional, pode ser controlado pelo Arduino):
+            setTimeout(() => {
+                led.classList.remove('led-amarelo');
+                alert('Comando de Reinício Enviado ao Arduino.');
+            }, 1500);
+        }
+        
+        // Função para simular a atualização das temperaturas (em um projeto real, 
+        // o Arduino enviaria esses valores periodicamente).
+        // function atualizarTemperaturas(tempAtual, tempQuente, tempFria) {
+        //     document.getElementById('temp-atual').innerText = tempAtual + '°C';
+        //     document.getElementById('temp-quente').innerText = tempQuente + '°C';
+        //     document.getElementById('temp-fria').innerText = tempFria + '°C';
+        // }
+    </script>
+</body>
+</html>
